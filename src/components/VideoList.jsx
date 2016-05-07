@@ -1,18 +1,11 @@
-var VideoList = props => {
-  // constructor () {
-  //   this.props.videos = props.videos;
-  // },
+var VideoList = props => (
+  <div className="video-list media">
+    {props.videos.map(video =>
+      <VideoListEntry video={video}/>
+    )}
+  </div>
+);
 
-  //render() {
-  return (
-    <div className="video-list media">
-      {props.videos.map(video =>
-        <VideoListEntry video={video}/>
-      )}
-    </div>
-  );
-  //}
-};
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated
 VideoList.propTypes = {
