@@ -15,13 +15,19 @@ var searchYouTube = (options, callback) => {
   //   }
   // });
 
+  // callback = callback || function(proxy) {};
+  // callback(options);
+
+  // return callback();
+
   gapi.client.setApiKey(YOUTUBE_API_KEY);
 
-  var query = "camel eyelids";
+  var query = options;
 
   // embeddable videos
 
-  gapi.client.load('youtube', 'v3', function(){
+  var returnResults = [];
+  gapi.client.load('youtube', 'v3', function() {
     var request = gapi.client.youtube.search.list({
       q: query,
       part: 'snippet',
@@ -30,20 +36,23 @@ var searchYouTube = (options, callback) => {
       type: 'video'
     });
 
-    request.execute(function(response){
+    var returnResults = [];
+    request.execute(function(response) {
       //console.log(response.items);
       var results = response.items;
       _.each(results, function(vid) {
-        console.log(vid.id.videoId);
+        //console.log(vid);
       });
+      callback(results);
+
+      //returnResults = results;
       // var str = JSON.stringify(response.result);
       // console.log(str);
     });
-
-
   });
 
 
+  //return returnResults;
 
 };
 
