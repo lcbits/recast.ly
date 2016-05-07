@@ -4,10 +4,12 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      currentVideo: window.exampleVideoData[1]
+      currentVideo: window.exampleVideoData[0],
+      allVideos: window.exampleVideoData
     };
 
     this.updateCurrentVideo = this.updateCurrentVideo.bind(this);
+
   }
 
   updateCurrentVideo(newVid) {
@@ -22,7 +24,7 @@ class App extends React.Component {
           <VideoPlayer video={this.state.currentVideo}/>
         </div>
         <div className="col-md-5">
-          <VideoList videos={window.exampleVideoData} clicker={this.updateCurrentVideo} />
+          <VideoList videos={this.state.allVideos} clicker={this.updateCurrentVideo} />
         </div>
       </div>
     );
